@@ -3,6 +3,16 @@
 const fsp = require('fs').promises;
 const marked = require('marked');
 
+// fix the nbsp marked swallowing https://github.com/markedjs/marked/issues/363#issuecomment-112853706
+marked.Lexer.prototype.lex = function (src) {
+    src = src
+        .replace(/\r\n|\r/g, '\n')
+        .replace(/\t/g, '    ')
+        .replace(/\u2424/g, '\n');
+
+    return this.token(src, true);
+};
+
 async function readFile(src) {
     return await fsp.readFile(src, { encoding: 'utf-8' });
 }
@@ -36,9 +46,9 @@ async function testNbsp() {
     }
 
     function textFn(text) {
-        //return text.replace(/\u00A0/g, '');
+        return text.replace(/\u00a0/g, '&#160;');
         //return text.replace(/je/g, 'tu');
-        return text;
+        //return text;
     }
 
     const markedRendererOverwrite = {

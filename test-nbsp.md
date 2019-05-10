@@ -2,9 +2,9 @@
 
 ## 8 Les branches
 
-### Comment comparer les historiques de deux branches ?
+### Comment comparer les historiques de deux branches ?
 
-Si je souhaite connaitre la liste des *commits* existants dans `release/v1.0.0` et qui n'existent pas dans `master` :
+Si je souhaite connaitre la liste des *commits* existants dans `release/v1.0.0` et qui n'existent pas dans `master` :
 
 ```bash
 git log release/v1.0.0..master
