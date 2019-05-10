@@ -1,15 +1,15 @@
-<h1 id="faq-git-pour-developpezcom">FAQ Git pour developpez.com</h1>
-<h2 id="8-les-branches">8 Les branches</h2>
-<h3 id="comment-comparer-les-historiques-de-deux-branches-">Comment comparer les historiques de deux branches ?</h3>
-<p>Si je souhaite connaitre la liste des <em>commits</em> existants dans <code>release/v1.0.0</code> et qui n&#39;existent pas dans <code>master</code> :</p>
+<h1>FAQ Git pour developpez.com</h1>
+<h2>8 Les branches</h2>
+<h3>Comment comparer les historiques de deux branches ?</h3>
+<p>Si je souhaite connaitre la liste des <em>commits</em> existants dans <code>release/v1.0.0</code> et qui n’existent pas dans <code>master</code> :</p>
 <pre><code class="language-bash">git log release/v1.0.0..master</code></pre>
-<p>Pour connaitre la liste des <em>commits</em> existants dans <code>master</code> et qui n&#39;existent pas dans <code>release/v1.0.0</code>, on inverse simplement l&#39;ordre :</p>
+<p>Pour connaitre la liste des <em>commits</em> existants dans <code>master</code> et qui n’existent pas dans <code>release/v1.0.0</code>, on inverse simplement l’ordre :</p>
 <pre><code class="language-bash">git log master..release/v1.0.0</code></pre>
-<p>Certaines options de la commande <code>log</code> sont très pratiques pour affiner l&#39;affichage brut de <code>git log</code>, elles peuvent être combinées.</p>
+<p>Certaines options de la commande <code>log</code> sont très pratiques pour affiner l’affichage brut de <code>git log</code>, elles peuvent être combinées.</p>
 <ul>
-<li><p><code>--oneline</code> permet de limiter l&#39;affichage de chaque <em>commit</em> sur une seule ligne.</p>
+<li><p><code>--oneline</code> permet de limiter l’affichage de chaque <em>commit</em> sur une seule ligne.</p>
 </li>
-<li><p><code>--stat</code> affiche la liste des fichiers modifiés et le nombre d&#39;ajouts et suppressions, par ex :</p>
+<li><p><code>--stat</code> affiche la liste des fichiers modifiés et le nombre d’ajouts et suppressions, par ex :</p>
 </li>
 </ul>
 <pre><code class="language-bash">$ git log --oneline --stat release/v1.0.0..master
@@ -23,7 +23,7 @@ df76163 Logs the correct path to jsonresume.json
 e9a998f update superagent from 2.+ to 3.+
  package.json | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)</code></pre>
-<p>Dans le cas de l&#39;usage de l&#39;opérateur <em>triple dot</em> (<code>...</code>), l&#39;ajout des options <code>--left-right</code>, <code>--decorate</code> et <code>--graph</code> permettent de rendre plus lisible le résultat.</p>
+<p>Dans le cas de l’usage de l’opérateur <em>triple dot</em> (<code>...</code>), l’ajout des options <code>--left-right</code>, <code>--decorate</code> et <code>--graph</code> permettent de rendre plus lisible le résultat.</p>
 <ul>
 <li><p><code>--left-right</code> ajoute à chaque ligne un <code>&lt;</code> ou un <code>&gt;</code> selon si la ligne fait référence à la première ou à la deuxième branche.</p>
 </li>
@@ -35,25 +35,25 @@ e9a998f update superagent from 2.+ to 3.+
 <p>Par exemple :</p>
 <pre><code class="language-bash">$ git log --oneline --decorate --left-right --graph release/v1.0.0...master
 
-&gt; 332d9e9 (HEAD -&gt; master, origin/master) Fix for themes and version bump
-&gt; 7d5f8a7 Fixed delete account issues. removed PDF exports for now
-&gt;   6d6c792 Merge pull request #290 from MarcLoupias/fix/security
+> 332d9e9 (HEAD -> master, origin/master) Fix for themes and version bump
+> 7d5f8a7 Fixed delete account issues. removed PDF exports for now
+>   6d6c792 Merge pull request #290 from MarcLoupias/fix/security
 |\  
-| &gt; 7ee2e20 (fork/fix/security, fix/security) update node version in engine section to drop unmaintained node version and match travis config
-| &gt; e9a998f update superagent from 2.+ to 3.+
-| &gt; be7e49d moving to an up-to-date and actively maintained package to open the browser
-&gt; | df76163 Logs the correct path to jsonresume.json
+| > 7ee2e20 (fork/fix/security, fix/security) update node version in engine section to drop unmaintained node version and match travis config
+| > e9a998f update superagent from 2.+ to 3.+
+| > be7e49d moving to an up-to-date and actively maintained package to open the browser
+> | df76163 Logs the correct path to jsonresume.json
 |/  
-&gt;   5aaf9b8 (fork/master, fork/HEAD) Merge pull request #275 from brandenbird/pr/change-export-to-puppeteer
+>   5aaf9b8 (fork/master, fork/HEAD) Merge pull request #275 from brandenbird/pr/change-export-to-puppeteer
 |\  
-| &gt; 6e1ec92 Fixed exports for pdfs
-&gt; | f0af5f6 Update node.js version to be tested on Travis CI
-&gt; | 4938d0e Update .nvmrc to use node.js v8.x LTS
-&gt; |   eef87b2 Merge pull request #273 from jouk0/patch-1
+| > 6e1ec92 Fixed exports for pdfs
+> | f0af5f6 Update node.js version to be tested on Travis CI
+> | 4938d0e Update .nvmrc to use node.js v8.x LTS
+> |   eef87b2 Merge pull request #273 from jouk0/patch-1
 |\ \  
 | |/  
 |/|
-| &gt; fa5130e Updated resume.json path change on the process arg
+| > fa5130e Updated resume.json path change on the process arg
 |/  
-&gt; ed2106d Added https to all external requests
+> ed2106d Added https to all external requests
 </code></pre>

@@ -30,7 +30,36 @@ async function testNbsp() {
     const tokens = tokenize(rawData);
     await writeFile('tokens.json', JSON.stringify(tokens));
     console.log('tokens.json written');
-    const html = marked.parser(tokens);
+
+    function codeFn(code, language) {
+        return `<pre><code class="language-${language}">${code}</code></pre>` + '\n';
+    }
+
+    function textFn(text) {
+        //return text.replace(/\u00A0/g, '');
+        //return text.replace(/je/g, 'tu');
+        return text;
+    }
+
+    const markedRendererOverwrite = {
+        code: codeFn,
+        text: textFn
+    };
+
+    const markedRenderer = Object.assign(
+        new marked.Renderer(),
+        { ...markedRendererOverwrite }
+    );
+
+    const markedOptions = {
+        renderer: markedRenderer,
+        langPrefix: '',
+        smartypants: true,
+        gfm: true,
+        breaks: true
+    };
+
+    const html = marked.parser(tokens, markedOptions);
     await writeFile('test-nbsp.html', html);
 }
 
